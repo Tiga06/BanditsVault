@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Access - BanditsVault</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="/vault.png" alt="Vault" class="nav-logo">
+            <span class="nav-text">BanditsVault</span>
+        </div>
+        <div class="nav-buttons">
+            <a href="/" class="nav-btn">
+                <span class="home-icon">⌂</span>
+                Home
+            </a>
+            <a href="/create" class="nav-btn">
+                <span class="plus-icon">+</span>
+                Create Vault
+            </a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Vault Access</h1>
+        </div>
+        
+        <div id="pinPrompt" class="vault-card" style="display: none;">
+            <h3>🔐 PIN Required</h3>
+            <p>Enter your 4-digit PIN to access this vault:</p>
+            <div class="form-group">
+                <input type="password" id="pinInput" class="pin-input" placeholder="****" maxlength="4">
+            </div>
+            <button onclick="accessVault(document.getElementById('pinInput').value)" class="btn-primary">Access Vault</button>
+        </div>
+
+        <div id="content" class="vault-card" style="display: none;">
+            <h3>Vault Contents</h3>
+            <div id="vaultContent"></div>
+            <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-primary); border-radius: 6px; text-align: center;">
+                Auto-destruct in: <span id="countdown" style="color: var(--accent-gold); font-weight: bold;">2:00</span>
+            </div>
+            <button onclick="manualDestruct()" class="btn-gradient-destruct">
+                Destroy Now
+            </button>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Accessing vault...</p>
+        </div>
+
+        <div id="error" style="display: none;"></div>
+    </div>
+
+    <script src="/vault.js"></script>
+</body>
+</html>

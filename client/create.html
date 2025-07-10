@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Vault - BanditsVault</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="/vault.png" alt="Vault" class="nav-logo">
+            <span class="nav-text">BanditsVault</span>
+        </div>
+        <div class="nav-buttons">
+            <a href="/" class="nav-btn">
+                <span class="home-icon">⌂</span>
+                Home
+            </a>
+            <a href="/create" class="nav-btn">
+                <span class="plus-icon">+</span>
+                Create Vault
+            </a>
+        </div>
+    </nav>
+    
+    <div class="container create-page">
+        <div class="header">
+            <h1>Create Secure Vault</h1>
+        </div>
+
+        <form id="encryptForm">
+            <div class="vault-grid">
+                <div class="vault-card">
+                    <h3>Secret Content</h3>
+                    <div class="form-group">
+                        <label>Secret Message:</label>
+                        <textarea id="secretText" placeholder="Enter your secret message..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload Image/Video:</label>
+                        <div class="file-upload" id="fileDropZone">
+                            <input type="file" id="fileUpload" style="display: none;" accept="image/*,video/*">
+                            <p id="fileStatus">Click to select or drag & drop</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vault-card">
+                    <h3>Security Settings</h3>
+                    <div class="form-group">
+                        <div class="toggle-section">
+                            <label>PIN Protection</label>
+                            <label class="toggle">
+                                <input type="checkbox" id="pinToggle" onchange="togglePinInput()">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <input type="password" id="pin" placeholder="4-digit PIN" maxlength="4" class="pin-disabled" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Link Expiry:</label>
+                        <select id="expiryTime">
+                            <option value="0.17">10 minutes</option>
+                            <option value="1">1 hour</option>
+                            <option value="24">1 day</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Self-Destruct Timer (seconds):</label>
+                        <input type="number" id="destructTimer" placeholder="120" min="30" max="3600" value="120">
+                        <small style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem; display: block;">Time before auto-destruction after access (30-3600 seconds)</small>
+                    </div>
+
+                    <div class="security-note">
+                        <p>🛡️ Your data remains unbreachable with military-grade encryption</p>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z"/>
+                        </svg>
+                        Create & Share Vault
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div id="result" style="display: none;"></div>
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Creating vault...</p>
+        </div>
+    </div>
+
+    <script src="/encrypt.js"></script>
+</body>
+</html>

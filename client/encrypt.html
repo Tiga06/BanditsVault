@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Vault - BanditsVault</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🏴‍☠️ Forge Your Vault</h1>
+        <p class="subtitle">Craft your digital treasure chest with royal-grade encryption</p>
+        
+        <div class="nav-links">
+            <a href="index.html">← Back to Den</a>
+        </div>
+
+        <div class="vault-card">
+            <form id="encryptForm">
+                <div class="form-group">
+                    <label>📜 Treasure Type:</label>
+                    <select id="contentType" onchange="toggleContentInput()">
+                        <option value="text">Text Secret</option>
+                        <option value="image">Image</option>
+                        <option value="video">Video</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="textInput">
+                    <label>📜 Secret Scroll:</label>
+                    <textarea id="secretText" placeholder="Enter your secret message here..."></textarea>
+                </div>
+
+                <div class="form-group" id="fileInput" style="display: none;">
+                    <label>💼 Treasure Chest:</label>
+                    <div class="file-upload" id="fileDropZone">
+                        <input type="file" id="fileUpload" style="display: none;" accept="image/*,video/*">
+                        <p id="fileStatus">Click to select file or drag & drop</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>🔐 Royal Seal (Optional):</label>
+                    <input type="password" id="pin" placeholder="4-digit PIN for extra security" maxlength="4">
+                </div>
+
+                <div class="form-group">
+                    <label>⏳ Vault Lifespan:</label>
+                    <select id="expiryTime">
+                        <option value="0.17">10 minutes</option>
+                        <option value="1">1 hour</option>
+                        <option value="24">1 day</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">🏴‍☠️ Create Vault</button>
+            </form>
+        </div>
+
+        <div id="result" style="display: none;"></div>
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Forging your vault...</p>
+        </div>
+    </div>
+
+    <script src="encrypt.js"></script>
+</body>
+</html>
