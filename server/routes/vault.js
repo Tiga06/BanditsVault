@@ -31,9 +31,7 @@ router.get('/:vaultId', (req, res) => {
     return res.status(401).json({ error: 'Invalid PIN' });
   }
   
-  vault.accessed = true;
-  saveDB(db);
-  
+  // Send response first
   res.json({
     encryptedContent: vault.encryptedContent,
     encryptedKeyBlob: vault.encryptedKeyBlob,
@@ -42,11 +40,9 @@ router.get('/:vaultId', (req, res) => {
     destructTimer: vault.destructTimer || 120
   });
   
-  setTimeout(() => {
-    const currentDB = loadDB();
-    delete currentDB.vaults[vaultId];
-    saveDB(currentDB);
-  }, 1000);
+  // Delete vault immediately after access
+  delete db.vaults[vaultId];
+  saveDB(db);
 });
 
 module.exports = router;
